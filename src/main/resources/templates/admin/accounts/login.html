@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin/dashboardLayout}">
+
+<head>
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Admin Category</title>-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"-->
+<!--            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"-->
+<!--    />-->
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+<!--    <script-->
+<!--            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"-->
+<!--            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+</head>
+<body>
+<!--<main class="container">-->
+<!--    <header class="row text-center"></header>-->
+<section class="row" layout:fragment="content">
+<div class="col-4 offset-4 mt-4">
+    <form th:action="@{/alogin}" method="post" th:object="${account}">
+<!--        <div class="card">-->
+<!--            <div class="card-header" style="background-color: #DDDDDD">-->
+<!--                <h2>Login</h2>-->
+<!--            </div>-->
+<!--            <div th:if="${message != null}" class="alert alert-primary" role="alert">-->
+<!--                <i>[[${message}]]</i>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="username" class="form-label">Username:</label>-->
+<!--                    <input-->
+<!--                            type="text"-->
+<!--                            class="form-control"-->
+<!--                            name="username"-->
+<!--                            id="username"-->
+<!--                            aria-describedby="usernameHId"-->
+<!--                            placeholder="Username"-->
+<!--                            th:field="*{username}"-->
+<!--                    />-->
+<!--                    <small id="usernameHid" class="form-text text-muted"-->
+<!--                           th:if="${#fields.hasErrors('username')}"-->
+<!--                    >Username is required</small-->
+<!--                    >-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="password" class="form-label">Password:</label>-->
+<!--                    <input-->
+<!--                            type="password"-->
+<!--                            class="form-control"-->
+<!--                            name="password"-->
+<!--                            id="password"-->
+<!--                            aria-describedby="passwordHId"-->
+<!--                            placeholder="Password"-->
+<!--                            th:field="*{password}"-->
+<!--                    />-->
+<!--                    <small id="passwordHId" class="form-text text-muted"-->
+<!--                           th:if="${#fields.hasErrors('password')}"-->
+<!--                    >Password is required</small-->
+<!--                    >-->
+<!--                </div>-->
+<!--                <div class="form-check">-->
+<!--                    <label class="form-check-label">-->
+<!--                        <input type="checkbox" class="form-check-input"-->
+<!--                               th:field="*{rememberMe}" value="false">-->
+<!--                        Remember me?-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card-footer text-muted">-->
+<!--                    <button type="reset" class="btn btn-primary">Reset</button>-->
+<!--                    <button class="btn btn-primary"><i class="fas fa-sign-in-alt mr-1"></i>Login</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="card shadow-sm border-0">
+            <div class="card-header text-center" style="background-color: #DDDDDD">
+                <h2 class="mb-0">Login</h2>
+            </div>
+            <div th:if="${message != null}" class="alert alert-primary m-3" role="alert">
+                <i>[[${message}]]</i>
+            </div>
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            name="username"
+                            id="username"
+                            aria-describedby="usernameHelp"
+                            placeholder="Enter your username"
+                            th:field="*{username}"
+                    />
+                    <small id="usernameHelp" class="form-text text-danger" th:if="${#fields.hasErrors('username')}">
+                        Username is required
+                    </small>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input
+                            type="password"
+                            class="form-control"
+                            name="password"
+                            id="password"
+                            aria-describedby="passwordHelp"
+                            placeholder="Enter your password"
+                            th:field="*{password}"
+                    />
+                    <small id="passwordHelp" class="form-text text-danger" th:if="${#fields.hasErrors('password')}">
+                        Password is required
+                    </small>
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" th:field="*{rememberMe}" />
+                    <label class="form-check-label" for="rememberMe">Remember me?</label>
+                </div>
+            </div>
+            <div class="card-footer bg-light text-center">
+                <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt me-1"></i>Login
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+</section>
+<!--    <footer class="row"></footer>-->
+<!--</main>-->
+</body>
+</html>

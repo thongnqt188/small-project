@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/dashboardLayout}">
+<head>
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Admin Category List</title>-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"-->
+<!--            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"-->
+<!--    />-->
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+<!--    <script-->
+<!--            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"-->
+<!--            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+</head>
+<body>
+<!--<main class="container">-->
+<!--    <header class="row text-center"></header>-->
+    <section class="row" layout:fragment="content">
+
+        <div class="col mt-4">
+            <form action="" method="post">
+                <div class="card shadow-sm border border-secondary">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="mb-0">Category List</h3>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${message}" class="alert alert-success" role="alert">
+                            <i class="fa fa-check-circle"></i> [[${message}]]
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="mb-0">Manage Categories</h5>
+                            <a th:href="@{/admin/categories/add}" class="btn btn-sm btn-outline-primary">
+                                <i class="fa fa-plus-circle"></i> New Category
+                            </a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Category ID</th>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col" class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="category : ${categories}">
+                                    <td scope="row">[[${category.categoryId}]]</td>
+                                    <td th:text="${category.name}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{'/admin/categories/view/' + ${category.categoryId}}" class="btn btn-outline-info btn-sm me-1">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning btn-sm me-1">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{'/admin/categories/delete/' + ${category.categoryId}}" class="btn btn-outline-danger btn-sm">
+                                            <i class="fa fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </section>
+<!--    <footer class="row">-->
+<!--    </footer>-->
+<!--</main>-->
+</body>
+</html>

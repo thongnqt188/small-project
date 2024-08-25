@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/dashboardLayout}">
+
+<head>
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Admin Category</title>-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"-->
+<!--            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"-->
+<!--    />-->
+<!--    <script-->
+<!--            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+<!--    <script-->
+<!--            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"-->
+<!--            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"-->
+<!--            crossorigin="anonymous"-->
+<!--    ></script>-->
+</head>
+<body>
+<!--<main class="container">-->
+<!--    <header class="row text-center"></header>-->
+<section class="row" layout:fragment="content">
+
+    <div class="col-8 offset-2 mt-4">
+        <form th:action="@{/admin/categories/saveOrUpdate}" method="post" th:object="${category}">
+            <div class="card shadow-sm border">
+                <div class="card-header bg-primary text-white">
+                    <h3 th:text="${category.isEdit? 'Edit Category' : 'Add New Category'}">Add New Category</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Category ID:</label>
+                        <input type="hidden" th:field="*{isEdit}">
+                        <input
+                                type="text"
+                                class="form-control"
+                                th:field="*{categoryId}"
+                                aria-describedby="categoryIdHid"
+                                placeholder="Category ID" readonly
+                        >
+                        <small th:if="${#fields.hasErrors('categoryId')}"
+                               id="categoryIdHid" class="form-text text-danger"
+                        >Category ID is required</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name:</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                th:field="*{name}"
+                                id="name"
+                                aria-describedby="nameHId"
+                                placeholder="Category Name"
+                        />
+                        <small th:if="${#fields.hasErrors('name')}"
+                               id="nameHId" class="form-text text-danger"
+                        >Category name is required</small>
+                    </div>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                    <div>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-save" aria-hidden="true"></i>
+                            <span th:if="${category.isEdit}">Update</span>
+                            <span th:if="${!category.isEdit}">Save</span>
+                        </button>
+                        <button type="reset" class="btn btn-secondary ms-2">Reset</button>
+                    </div>
+                    <a th:href="@{/admin/categories/searchpaginated}" class="btn btn-success">
+                        <i class="fa fa-list" aria-hidden="true"></i> List Categories
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</section>
+<!--    <footer class="row"></footer>-->
+<!--</main>-->
+</body>
+</html>
